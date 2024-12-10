@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 import { assets } from '../assets/assets';
 import RelatedDoctors from '../components/RelatedDoctors';
-
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer'
 const Appointment = () => {
 
   const {docId} = useParams();
@@ -82,6 +83,7 @@ const Appointment = () => {
 
   return docInfo && (
     <div>
+      <Navbar />
       {/* ---------Doctors Details---------- */}
       <div className='flex flex-col sm:flex-row gap-4'>
         <div>
@@ -138,7 +140,7 @@ const Appointment = () => {
 
         {/* -----------Listing Realted Doctors---------- */}
         <RelatedDoctors docId={docId} speciality={docInfo.speciality}/>
-
+        <Footer/>
     </div>
   )
 }
