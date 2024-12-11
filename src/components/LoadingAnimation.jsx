@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import DocTime3 from "../../public/images/DocTime3.png";
+import Doctor from "../../public/Lottie/Doctor.json";
+import Lottie from "lottie-react";
+import { Link } from "react-router-dom";
 
 function LoadingAnimation() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    
+    // Simulate asynchronous initialization for 3 seconds
     const initializeApp = async () => {
       try {
-        // Simulating a delay of 1.5 seconds
-        await new Promise((resolve) => setTimeout(resolve, 1500)); 
+        // Simulating a delay of 3 seconds
+        await new Promise((resolve) => setTimeout(resolve, 1000)); 
         setIsLoading(false);
       } catch (error) {
         console.error("Initialization failed:", error);
@@ -21,7 +23,7 @@ function LoadingAnimation() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-screen">
       {isLoading ? (
         <div className="flex flex-col items-center animate-pulse">
           {/* Loading animation */}
@@ -30,14 +32,17 @@ function LoadingAnimation() {
             alt="Loading Icon"
             className="w-80 h-80 object-contain"
           />
-          <p className="mt-0 text-gray-500 font-medium">DocTime</p>
+          <p className="mt-4 text-gray-500 font-medium">DocTime</p>
         </div>
       ) : (
-        <Link to="/">
-          <button className="bg-blue-500 text-white font-semibold h-10 w-56 rounded-md border border-blue-700 shadow-md">
-            Get Started
-          </button>
-        </Link>
+        <div className="flex flex-col items-center">
+          <Lottie className="w-96 h-96" animationData={Doctor} />
+          <Link to="/">
+            <button className="mt-4 bg-blue-500 text-white font-semibold h-10 w-56 rounded-md border border-blue-700 shadow-md">
+              Get Started
+            </button>
+          </Link>
+        </div>
       )}
     </div>
   );
