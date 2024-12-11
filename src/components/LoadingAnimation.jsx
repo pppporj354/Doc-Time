@@ -6,11 +6,11 @@ function LoadingAnimation() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate asynchronous initialization for 3 seconds
+    
     const initializeApp = async () => {
       try {
-        // Simulating a delay of 3 seconds
-        await new Promise((resolve) => setTimeout(resolve, 1000)); 
+        // Simulating a delay of 1.5 seconds
+        await new Promise((resolve) => setTimeout(resolve, 1500)); 
         setIsLoading(false);
       } catch (error) {
         console.error("Initialization failed:", error);
