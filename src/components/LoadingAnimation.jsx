@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import DocTime3 from "../../public/images/DocTime3.png";
 
-const LoadingAnimation = () => {
-  const [isLoading, setIsLoading] = useState(() => {
-    
-    return localStorage.getItem("loadingCompleted") !== "true";
-  });
+function LoadingAnimation() {
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isLoading) {
-      
-      const timer = setTimeout(() => {
+    // Simulate asynchronous initialization for 3 seconds
+    const initializeApp = async () => {
+      try {
+        // Simulating a delay of 3 seconds
+        await new Promise((resolve) => setTimeout(resolve, 1000)); 
         setIsLoading(false);
-        localStorage.setItem("loadingCompleted", "true"); 
-      }, 3000);
+      } catch (error) {
+        console.error("Initialization failed:", error);
+      }
+    };
 
-      
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading]);
+    initializeApp();
+  }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen">
       {isLoading ? (
-        <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+        <div className="flex flex-col items-center animate-pulse">
+          {/* Loading animation */}
+          <img
+            src={DocTime3}
+            alt="Loading Icon"
+            className="w-80 h-80 object-contain"
+          />
+          <p className="mt-0 text-gray-500 font-medium">DocTime</p>
+        </div>
       ) : (
         <Link to="/">
           <button className="bg-blue-500 text-white font-semibold h-10 w-56 rounded-md border border-blue-700 shadow-md">
@@ -33,6 +41,6 @@ const LoadingAnimation = () => {
       )}
     </div>
   );
-};
+}
 
 export default LoadingAnimation;
