@@ -11,6 +11,8 @@ import Appointment from './pages/Appointment'
 import GettingStarted from './pages/GettingStarted'
 function App() {
   return (
+    <div className='dark:bg-gray-900'>
+
       <div className='mx-4 sm:mx-[10%]'>
       
 
@@ -29,6 +31,8 @@ function App() {
       </Routes>
     
     </div>
+    </div>
+
   )
 }
 
